@@ -18,7 +18,7 @@ export class PaymentModal {
 
   @Output() close = new EventEmitter<void>();
 
-  buyerName = '';
+  buyerName = ''; 
   email = '';
   asistentes: any[] = [];
 

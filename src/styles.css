@@ -1138,3 +1138,69 @@
     0 0 22px rgba(247, 147, 30, 0.45),   /* #f7931e */
     0 0 35px rgba(255, 130, 60, 0.35) !important; /* mezcla cálida */
 }
+
+/* =========================================
+   FIX RESPONSIVE GLOBAL - PRISM CLUB
+   ========================================= */
+
+/* 1. Evitar desbordamiento horizontal en móviles */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* 2. Hacer que todas las imágenes sean fluidas */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 3. Arreglar el Dashboard y Grid Systems en Móvil */
+@media (max-width: 768px) {
+    
+    /* Forzar columnas a apilarse */
+    .metric-row, 
+    .chart-row,
+    .events-grid,
+    .vip-content, 
+    .about-content,
+    .contact-content {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important; /* Si usas Grid */
+        gap: 2rem !important;
+    }
+
+    /* Ajustar textos gigantes */
+    h1 { font-size: 2.5rem !important; }
+    h2 { font-size: 2rem !important; }
+    
+    /* Ajustar contenedores */
+    .container {
+        padding: 0 1.5rem !important;
+        width: 100% !important;
+        min-width: 0 !important; /* Evita que flex items fuercen ancho */
+    }
+
+    /* Sidebar del Admin: Ocultarla o hacerla flotante */
+    .sidebar {
+        width: 0 !important;
+        overflow: hidden;
+        /* Aquí deberías tener un botón para mostrarla con JS, 
+           pero esto evita que rompa el diseño de entrada */
+    }
+    
+    /* Ajuste si la sidebar está activa */
+    .sidebar.toggled {
+        width: 100% !important;
+        position: fixed;
+        z-index: 1000;
+        height: 100vh;
+    }
+
+    /* Quitar margen izquierdo del contenido cuando sidebar se oculta */
+    .container-fluid {
+        margin-left: 0 !important;
+        padding: 1rem !important;
+    }
+}
