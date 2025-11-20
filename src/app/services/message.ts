@@ -14,6 +14,6 @@ export class Message {
   constructor(private _http: HttpClient){}
   
   sendMessage(body: FormularioData){
-    return this._http.post('https://prism-club-backend.onrender.com', body);
+    return this._http.post('http://localhost:3000/Formulario', body);
   }
 }

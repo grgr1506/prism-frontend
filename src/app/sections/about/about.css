@@ -1,16 +1,21 @@
 /* ============================================
-   ABOUT SECTION
+   ABOUT SECTION - FIX RESPONSIVE
    ============================================ */
 
 .about {
   padding: 6rem 0;
   background: linear-gradient(180deg, #0a0a0a 0%, #1a0a1a 100%);
+  /* CRUCIAL: Evita que animaciones o hijos rompan el ancho de la página */
+  overflow: hidden; 
+  width: 100%;
 }
 
 .about .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  /* Padding lateral seguro para que no toque los bordes en móvil */
+  padding: 0 1.5rem; 
+  width: 100%;
 }
 
 .about-content {
@@ -20,8 +25,9 @@
   align-items: center;
 }
 
+/* TEXTO */
 .about-text h2 {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem); /* Tamaño dinámico */
   font-weight: 800;
   background: linear-gradient(135deg, #ff0080, #00bfff);
   -webkit-background-clip: text;
@@ -38,16 +44,17 @@
   margin-bottom: 1.5rem;
 }
 
+/* ESTADÍSTICAS */
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1.5rem;
   margin-top: 3rem;
 }
 
 .stat-item {
   text-align: center;
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 0, 128, 0.2);
   border-radius: 15px;
@@ -61,7 +68,7 @@
 }
 
 .stat-number {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 800;
   background: linear-gradient(135deg, #ff0080, #00bfff);
   -webkit-background-clip: text;
@@ -72,35 +79,38 @@
 
 .stat-item div:last-child {
   color: #b0b0b0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
+/* IMÁGENES (VISUAL GRID) */
 .visual-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  width: 100%; /* Asegura que no exceda el contenedor */
 }
 
 .visual-item {
   position: relative;
   overflow: hidden;
   border-radius: 15px;
-  aspect-ratio: 1;
+  aspect-ratio: 1; /* Mantiene las imágenes cuadradas */
   border: 2px solid rgba(255, 0, 128, 0.2);
   transition: all 0.3s ease;
 }
 
+/* La primera imagen ocupa todo el ancho de la grilla */
 .visual-item:first-child {
   grid-column: 1 / -1;
-  aspect-ratio: 2/1;
+  aspect-ratio: 2/1; 
 }
 
 .visual-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* La imagen llena el cuadro sin deformarse */
   transition: transform 0.4s ease;
 }
 
@@ -113,18 +123,60 @@
   transform: scale(1.1);
 }
 
+/* ANIMACIÓN */
 .slide-in-left {
   animation: slideInLeft 0.8s ease-out;
 }
 
 @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================
+   RESPONSIVE (MÓVIL Y TABLET)
+   ============================================ */
+
+@media (max-width: 968px) {
+  .about {
+    padding: 4rem 0;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+
+  .about-content {
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 3rem;
+  }
+
+  /* En móvil, las estadísticas se ven mejor en 2 filas si son muchas, 
+     pero como son 3, mejor que sean pequeñas en una fila o 1 columna */
+  .stats {
+    gap: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
   }
 }
 
+@media (max-width: 480px) {
+  .about-text h2 {
+    font-size: 2rem;
+  }
+
+  /* En celulares pequeños, las estadísticas en columna */
+  .stats {
+    grid-template-columns: 1fr; 
+  }
+
+  .visual-grid {
+    grid-template-columns: 1fr; /* Una sola imagen por fila */
+  }
+
+  .visual-item:first-child {
+    aspect-ratio: 16/9; /* Formato video */
+  }
+  
+  .visual-item {
+      aspect-ratio: 1; /* Cuadrado */
+  }
+}

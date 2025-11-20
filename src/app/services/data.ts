@@ -6,7 +6,7 @@ import { environment } from '../../environments/enviroments';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-    private apiUrl = 'https://prism-club-backend.onrender.com/api/data';
+    private apiUrl = `${environment.serverURL}/api/data`;
     
     constructor(private http: HttpClient) {}
 
