@@ -1144,12 +1144,12 @@
    ========================================= */
 
 /* 1. Evitar desbordamiento horizontal en móviles */
+/* FIX GLOBAL DE RESPONSIVE */
 html, body {
-    max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita scroll horizontal indeseado */
+    width: 100%;
 }
-
-/* 2. Hacer que todas las imágenes sean fluidas */
+/* Ajustar imágenes gigantes */
 img {
     max-width: 100%;
     height: auto;

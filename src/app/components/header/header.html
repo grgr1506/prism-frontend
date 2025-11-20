@@ -1,16 +1,19 @@
 <header>
-    <nav>
+    <nav class="navbar">
         <div class="logo" routerLink="/">PRISM</div>
 
+        <button class="mobile-menu-toggle" (click)="toggleMenu()">
+            <i class="fas" [class.fa-bars]="!isMenuOpen" [class.fa-times]="isMenuOpen"></i>
+        </button>
+
         <ul class="nav-links" [class.active]="isMenuOpen">
-            
             <li><a routerLink="/" fragment="home" (click)="toggleMenu()">INICIO</a></li>
             <li><a routerLink="/" fragment="about" (click)="toggleMenu()">NOSOTROS</a></li>
             <li><a routerLink="/" fragment="events" (click)="toggleMenu()">EVENTOS</a></li>
             <li><a routerLink="/" fragment="vip" (click)="toggleMenu()">VIP</a></li>
             <li><a routerLink="/" fragment="contact" (click)="toggleMenu()">CONTACTO</a></li>
             
-            <li>
+            <li class="cart-item">
                 <div class="cart-icon" (click)="toggleCart()">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count">{{ cartCount }}</span>
@@ -22,16 +25,12 @@
             </li>
 
             <li *ngIf="isUserLoggedIn">
-                <a (click)="performLogout(); toggleMenu()" style="cursor: pointer;">SALIR</a>
+                <a (click)="performLogout()" style="cursor: pointer;">SALIR</a>
             </li>
             
             <li *ngIf="userRole === 'admin'">
-                <a routerLink="/admin" (click)="toggleMenu()">ADMIN</a>
+                <a routerLink="/admin" (click)="toggleMenu()" style="color: #ff0080;">ADMIN</a>
             </li>
         </ul>
-
-        <button class="mobile-menu-toggle" (click)="toggleMenu()">
-            <i class="fas" [class.fa-bars]="!isMenuOpen" [class.fa-times]="isMenuOpen"></i>
-        </button>
     </nav>
 </header>

@@ -1,4 +1,3 @@
-// src/app/components/header/header.component.ts
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -13,11 +12,13 @@ import { AuthService } from '../../services/auth';
   styleUrls: ['./header.css']
 })
 export class HeaderComponent implements OnInit {
-
-    isMenuOpen: boolean = false;
+    
     cartCount: number = 0;
     isUserLoggedIn: boolean = false; 
     userRole: string | null = null; 
+    
+    // VARIABLE PARA EL MENÚ MÓVIL
+    isMenuOpen: boolean = false;
 
     constructor(
         private cartService: CartService,
@@ -25,11 +26,8 @@ export class HeaderComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        // Suscripción clave: se ejecuta inmediatamente al inicio y cada vez que el estado cambia
         this.authService.isLoggedIn$.subscribe(state => {
             this.isUserLoggedIn = state;
-            
-            // Actualizar el rol para la visibilidad de ADMIN
             if (state) {
                 this.userRole = this.authService.getUserRole();
             } else {
@@ -42,21 +40,22 @@ export class HeaderComponent implements OnInit {
         });
     }
 
+    // FUNCIÓN PARA ABRIR/CERRAR MENÚ
+    toggleMenu() {
+        this.isMenuOpen = !this.isMenuOpen;
+    }
+
     toggleCart() {
         const cartElement = document.getElementById('cart');
         if (cartElement) {
             cartElement.classList.toggle('active');
         }
+        // Cerrar menú si se abre el carrito
+        this.isMenuOpen = false;
     }
     
     performLogout() {
         this.authService.logout();
+        this.isMenuOpen = false; // Cerrar menú al salir
     }
-    toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
 }
-}
-
-// En tu clase HeaderComponent:
-
-
