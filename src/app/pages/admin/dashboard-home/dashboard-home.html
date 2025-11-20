@@ -1,0 +1,56 @@
+<div class="container-fluid prism-admin-content">
+
+    <div class="header-section">
+        <h1 class="h3 mb-0">Dashboard de Administración</h1>
+           <button (click)="generateReport()" class="btn-prism-report">
+                        <i class="fas fa-download fa-sm mr-2"></i> Generar Reporte
+                    </button>
+            </div>
+
+        <div class="metric-row">
+                        <div class="metric-card border-left-success">
+                        <div class="card-title text-success">Ingresos (Mensuales)</div>
+                        <div class="card-value">{{ ingresosMes }}</div>
+                    </div>
+                        <div class="metric-card border-left-warning">
+                        <div class="card-title text-warning">Eventos Activos</div>
+                        <div class="card-value">{{ eventosActivos }}</div>
+                    </div>
+                        <div class="metric-card border-left-primary">
+                        <div class="card-title text-primary">Clientes VIP Activos</div>
+                        <div class="card-value">{{ clientesVipActivos }}</div>
+                    </div>
+        
+                    <div class="metric-card border-left-info">
+                        <div class="card-title text-info">Usuarios Activos</div>
+                        <div class="card-value">{{ usuariosActivos }}</div>
+                    </div>
+
+                
+        
+            </div>
+
+            <div class="chart-row">
+               
+                        <div class="chart-card large">
+                        <div class="card-header">Ventas Por Eventos</div>
+                        <div class="card-body chart-container">
+                                <canvas baseChart                     [data]="lineChartData"                    
+                    [options]="lineChartOptions"                     [type]="lineChartType"                    
+                    height="300">
+                                    </canvas>
+                            </div>
+                    </div>
+
+                        <div class="chart-card small">
+                        <div class="card-header">Entradas Por Eventos</div>
+                        <div class="card-body chart-container">
+                                 <canvas baseChart                     [data]="barChartData"                    
+                    [options]="barChartOptions"                     [type]="barChartType"                    
+                    height="300">
+                                    </canvas>
+                            </div>
+                    </div>
+            </div>
+       
+</div>

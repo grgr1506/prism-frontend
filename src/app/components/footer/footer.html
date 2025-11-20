@@ -1,0 +1,71 @@
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            
+            <div class="footer-section">
+                <h3>PRISM CLUB</h3>
+                <p>La experiencia de vida nocturna más exclusiva de Lima. Donde cada noche se convierte en una
+                    celebración inolvidable.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a routerLink="/" fragment="home">Inicio</a>
+                <a routerLink="/" fragment="about">Nosotros</a>
+                <a routerLink="/" fragment="events">Eventos</a>
+                <a routerLink="/" fragment="vip">Experiencia VIP</a>
+                <a routerLink="/shop">Tienda</a> <a routerLink="/" fragment="contact">Contacto</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Servicios</h3>
+                <a href="#">Reserva de Mesa</a>
+                <a href="#">Eventos Privados</a>
+                <a href="#">Membresías VIP</a>
+                <a href="#">Organización de Fiestas</a>
+                <a href="#">Catering Premium</a>
+                <a href="#">Shows en Vivo</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Suscríbete para recibir invitaciones exclusivas y ofertas especiales.</p>
+                
+                <div class="newsletter-form">
+                    <input 
+                        type="email" 
+                        placeholder="Tu email"
+                        [(ngModel)]="newsletterEmail"
+                        name="newsletterEmail"
+                        required
+                    >
+                    <button
+                        (click)="subscribeToNewsletter()"
+                        class="submit-btn"
+                        [disabled]="!newsletterEmail || !newsletterEmail.includes('@')"
+                    >
+                        Suscribirse
+                    </button>
+                </div>
+                </div>
+            
+            <div class="footer-section">
+                <h3>Libro de Reclamaciones</h3>
+                <a href="#" style="display: inline-block; margin-top: 1.5rem;">
+                    <img src="../../../Assets/Img/libro-de-reclamaciones.png"
+                        style="width: 120px; height: auto; transition: transform 0.3s ease;"> </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>© 2025 PRISM Club. Todos los derechos reservados. | Política de Privacidad | Términos y Condiciones</p>
+    </div>
+</footer>

@@ -1,0 +1,59 @@
+<!-- BACKDROP -->
+<div class="modal-backdrop" (click)="closePurchaseModal()"></div>
+
+<!-- MODAL DE INFORMACIÓN DE COMPRA -->
+<div class="modal-content animate-slide-up" *ngIf="showPurchaseModal">
+
+  <h2 class="modal-title">Datos de compra</h2>
+
+  <form (ngSubmit)="confirmPayment()" #purchaseForm="ngForm">
+
+    <!-- Correo -->
+    <div class="form-group">
+      <label for="email">Tu correo electrónico</label>
+      <input id="email" type="email" [(ngModel)]="email" name="email" required />
+    </div>
+
+    <h3 class="section-title">Datos de asistentes</h3>
+
+    <!-- LISTA DE ASISTENTES -->
+    <div *ngFor="let a of asistentes; let i = index" class="asistente-box">
+
+      <p class="evento-label">
+        Evento: <span>{{ a.nombre_evento }}</span>
+      </p>
+
+      <div class="form-group">
+        <label>Nombre del asistente #{{ i + 1 }}</label>
+        <input type="text" [(ngModel)]="a.nombre" name="nombre{{ i }}" required />
+      </div>
+
+      <div class="form-group">
+        <label>DNI del asistente #{{ i + 1 }}</label>
+        <input type="text" maxlength="8" [(ngModel)]="a.dni" name="dni{{ i }}" required />
+      </div>
+
+      <hr />
+    </div>
+    <br>
+    <button class="pay-btn" [disabled]="!purchaseForm.valid">
+      Continuar al pago
+    </button>
+  </form>
+  <br>
+  <button class="close-btn" (click)="closePurchaseModal()">Cancelar</button>
+
+</div>
+<!-- BACKDROP -->
+<div class="modal-backdrop" (click)="closeStripeModal()" *ngIf="showStripeModal"></div>
+
+<!-- MODAL DE STRIPE -->
+<div class="modal-content modal-stripe animate-slide-up" *ngIf="showStripeModal">
+
+  <h2 class="modal-title">Pagar Entrada</h2>
+
+  <div id="checkout" class="checkout-container"></div>
+
+  <button class="close-btn" (click)="closeStripeModal()">Cancelar</button>
+
+</div>

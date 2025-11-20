@@ -1,0 +1,55 @@
+<section class="hero" style="min-height: 100vh; padding-top: 5rem;">
+    <div class="container fade-in" style="max-width: 600px; padding: 3rem; background: rgba(26, 26, 26, 0.9); border: 1px solid #ff6b35; border-radius: 5px; box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);">
+        
+        <h2 class="section-title" style="font-size: 2.5rem; text-align: center; margin-bottom: 2rem;">
+            Crear Cuenta PRISM
+        </h2>
+
+        <p *ngIf="errorMessage" style="color: red; text-align: center; font-weight: 600;">{{ errorMessage }}</p>
+        <p *ngIf="successMessage" style="color: #ff6b35; text-align: center; font-weight: 600;">{{ successMessage }}</p>
+        
+        <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" style="display: grid; gap: 15px;">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="regNombre">Nombre:</label>
+                    <input id="regNombre" type="text" formControlName="nombre" required> <small *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched" style="color: #ff6b35;">El nombre es obligatorio.</small>
+                </div>
+                <div class="form-group">
+                    <label for="regApellido">Apellido:</label>
+                    <input id="regApellido" type="text" formControlName="apellido" required> <small *ngIf="registroForm.get('apellido')?.invalid && registroForm.get('apellido')?.touched" style="color: #ff6b35;">El apellido es obligatorio.</small>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="regEmail">Correo Electrónico:</label>
+                    <input id="regEmail" type="email" formControlName="correo_electronico" required> <small *ngIf="registroForm.get('correo_electronico')?.invalid && registroForm.get('correo_electronico')?.touched" style="color: #ff6b35;">
+                        Ingrese un email válido.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="regTelefono">Número de Teléfono (Opcional):</label>
+                    <input id="regTelefono" type="tel" formControlName="numero_telefono"> </div>
+            </div>
+
+            <div class="form-group">
+                <label for="regPassword">Contraseña:</label>
+                <input id="regPassword" type="password" formControlName="hash_contrasena" required> <small *ngIf="registroForm.get('hash_contrasena')?.errors?.['required'] && registroForm.get('hash_contrasena')?.touched" style="color: #ff6b35;">
+                    La contraseña es obligatoria.
+                </small>
+                <small *ngIf="registroForm.get('hash_contrasena')?.errors?.['minlength'] && registroForm.get('hash_contrasena')?.touched" style="color: #ff6b35;">
+                    Mínimo 6 caracteres.
+                </small>
+            </div>
+            
+            <button type="submit" [disabled]="registroForm.invalid" class="cta-primary" style="margin-top: 20px;">
+                Registrarse
+            </button>
+            
+            <p style="text-align: center; opacity: 0.7; font-size: 0.9rem; margin-top: 10px;">
+                ¿Ya tienes cuenta? <a routerLink="/login" style="color: #ff6b35; text-decoration: none;">Inicia sesión aquí.</a>
+            </p>
+        </form>
+    </div>
+</section>

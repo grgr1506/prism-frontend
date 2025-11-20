@@ -1,0 +1,235 @@
+.vip {
+  padding: 6rem 0;
+  background: 
+    linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(255, 0, 128, 0.1) 100%),
+    #0a0a0a;
+  position: relative;
+}
+
+.vip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(0, 191, 255, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.vip .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff0080, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #b0b0b0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vip-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.vip-text h3 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #ff0080, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.vip-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vip-features li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.vip-features li:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 0, 128, 0.3);
+  transform: translateX(10px);
+}
+
+.vip-features li i {
+  color: #ff0080;
+  font-size: 1.3rem;
+  min-width: 24px;
+}
+
+.membership-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.membership-card {
+  background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(138, 43, 226, 0.1));
+  border: 2px solid rgba(255, 0, 128, 0.3);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.membership-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(135deg, transparent, rgba(255, 0, 128, 0.2), transparent);
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.membership-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: #ff0080;
+  box-shadow: 0 20px 60px rgba(255, 0, 128, 0.4);
+}
+
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
+}
+
+.card-price {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff0080, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.membership-card p {
+  color: #b0b0b0;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.buy-ticket {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #ff0080, #8a2be2);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.buy-ticket::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.buy-ticket:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.buy-ticket:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 0, 128, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .vip-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 3rem 1rem;
+  }
+
+  .vip {
+    padding: 4rem 0;
+  }
+
+  .membership-cards {
+    grid-template-columns: 1fr;
+  }
+}

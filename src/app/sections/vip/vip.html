@@ -1,0 +1,34 @@
+<section id="vip" class="vip">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Experiencia VIP</h2>
+            <p class="section-subtitle">Disfruta de privilegios exclusivos y un servicio personalizado</p>
+        </div>
+
+        <div class="vip-content">
+            <div class="vip-text">
+                <h3 style="font-size: 2.5rem; margin-bottom: 2rem; color: #ff6b35;">Privilegios Exclusivos</h3>
+                <ul class="vip-features">
+                    <li><i class="fas fa-check"></i> Acceso prioritario sin filas</li>
+                    <li><i class="fas fa-check"></i> Mesa reservada con vista premium</li>
+                    <li><i class="fas fa-check"></i> Servicio de botella y mixología exclusiva</li>
+                    <li><i class="fas fa-check"></i> Concierge personal durante tu visita</li>
+                </ul>
+            </div>
+
+            <div class="membership-cards">
+                <div class="membership-card" *ngFor="let member of memberships">
+                    <div class="card-title">{{ member.nombre | uppercase }}</div>
+                    <div class="card-price">
+                        {{ member.precio_mensual | currency:'PEN':'S/':'1.0-2' }}<span style="font-size: 1rem; opacity: 0.7;">/mes</span>
+                    </div>
+                    <p>{{ member.descripcion }}</p>
+                    
+                    <button class="buy-ticket" (click)="addToCart(member)" style="margin-top: 1.5rem;">
+                        Suscribirse
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

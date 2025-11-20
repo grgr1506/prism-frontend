@@ -1,0 +1,148 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+/* Modal general */
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1b1b1b;
+  border-radius: 14px;
+  padding: 2rem;
+  width: 92%;
+  max-width: 430px;
+  z-index: 1001;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+/* Modal especial para Stripe (más grande) */
+.modal-stripe {
+  max-width: 480px;
+  padding: 1.5rem;
+}
+
+/* Contenedor Stripe */
+.checkout-container {
+  width: 100%;
+  min-height: 520px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Títulos */
+.modal-title {
+  font-weight: 800;
+  background: linear-gradient( 135deg, #ff0080, #00bfff);
+    background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.section-title {
+  margin-top: 1rem;
+  background: linear-gradient( 135deg, #ff0080, #00bfff);
+    background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+  text-align: center;
+}
+
+.evento-label {
+  font-size: .9rem;
+  color: #bbb;
+}
+.evento-label span {
+  color: #8a7ff1;
+  font-weight: bold;
+}
+
+/* Inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.form-group input {
+  padding: .6rem;
+  background: #2c2c2c;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.15);
+  color: #fff;
+}
+.form-group input:focus {
+  border-color: #8c13fd;
+}
+
+/* Botones */
+.pay-btn {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(135deg, #ff0080, #8a2be2);
+  border: none;
+  border-radius: 40px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+}
+.pay-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 0, 128, 0.5);
+}
+.pay-btn:disabled {
+  background: #333;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.close-btn {
+  width:100%;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(135deg, #ff0080, #8a2be2);
+  border: none;
+  border-radius: 40px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(255, 0, 128, 0.3);
+}
+.close-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 0, 128, 0.5);
+}
+
+/* Animación */
+@keyframes slideUp {
+  from { opacity: 0; transform: translate(-50%, 20%); }
+  to   { opacity: 1; transform: translate(-50%, -50%); }
+}
+.animate-slide-up {
+  animation: slideUp .35s ease forwards;
+}

@@ -1,0 +1,206 @@
+/* src/app/pages/admin/dashboard-home/dashboard-home.css */
+
+/* ============================================
+   DASHBOARD HOME - PRISM CLUB (ALINEADO Y CENTRADO)
+   ============================================ */
+
+.prism-admin-content {
+  padding: 0;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADER */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(255, 0, 128, 0.2);
+}
+
+.header-section h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff0080, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.btn-prism-report {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #ff0080, #f7931e);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+}
+
+.btn-prism-report:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 0, 128, 0.5);
+}
+
+/* ============================================
+   TARJETAS DE MÉTRICAS (CENTRADAS)
+   ============================================ */
+
+.metric-row {
+  display: flex;
+  flex-wrap: wrap;
+  /* 💡 CAMBIO: Centrar las tarjetas en lugar de espaciarlas a los extremos */
+  justify-content: center; 
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.metric-card {
+  background: #222222;
+  border-radius: 15px;
+  padding: 2rem;
+  border-left: 5px solid;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between; 
+  flex-grow: 1; 
+  min-width: 260px;
+}
+
+/* 💡 AJUSTE: Cálculo para 4 tarjetas (tienes 4 métricas en el HTML) */
+@media (min-width: 1200px) {
+    .metric-card {
+        /* 4 columnas - gap aproximado para alineación perfecta */
+        width: calc((100% / 4) - 1.2rem); 
+        min-width: auto;
+    }
+}
+
+/* Media Query para Tablets (2 columnas) */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .metric-card {
+        width: calc((100% / 2) - 1rem); 
+    }
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 0, 128, 0.3);
+}
+
+/* Bordes de colores */
+.border-left-success { border-left-color: #1cc88a !important; }
+.border-left-warning { border-left-color: #f6c23e !important; }
+.border-left-primary { border-left-color: #ff0080 !important; }
+.border-left-info    { border-left-color: #00bfff !important; }
+
+.metric-card .card-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.metric-card .card-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  margin-top: auto; 
+}
+
+.text-success { color: #1cc88a !important; }
+.text-warning { color: #f6c23e !important; }
+.text-primary { color: #ff0080 !important; }
+.text-info    { color: #00bfff !important; }
+
+/* ============================================
+   GRÁFICOS (ALINEADOS 50/50)
+   ============================================ */
+
+.chart-row {
+  display: grid;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+/* 💡 CAMBIO: Primera fila con distribución simétrica 1fr 1fr (50% - 50%) */
+.chart-row:first-of-type {
+  grid-template-columns: 1fr 1fr;
+}
+
+.chart-card {
+  background: #222222;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 0, 128, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.chart-card:hover {
+  box-shadow: 0 8px 25px rgba(255, 0, 128, 0.3);
+}
+
+.chart-card .card-header {
+  background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(0, 191, 255, 0.1));
+  border-bottom: 1px solid rgba(255, 0, 128, 0.2);
+  padding: 1.25rem 1.5rem;
+  font-weight: 700;
+  color: #ff0080;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center; /* Centrar título del gráfico */
+}
+
+.chart-card .card-body {
+  padding: 1.5rem;
+}
+
+.chart-container {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+  .header-section {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center; /* Centrar en móvil */
+    text-align: center;
+  }
+  
+  /* En móvil, una sola columna para todo */
+  .metric-row,
+  .chart-row:first-of-type {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .metric-card {
+    width: 100%;
+  }
+}

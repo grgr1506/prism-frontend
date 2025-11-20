@@ -1,0 +1,19 @@
+<div class="result-container">
+
+  <div *ngIf="status === 'success'" class="success-box">
+    <h1>Compra exitosa....</h1>
+    <p>Se procesó tu pago correctamente.</p>
+    <p>Revisa tu correo para más detalles.</p>
+  </div>
+
+  <div *ngIf="status === 'cancel'" class="cancel-box">
+    <h1> Compra cancelada</h1>
+    <p>No se pudo completar el pago.</p>
+  </div>
+
+  <div *ngIf="status === 'error'" class="error-box">
+    <h1> Error</h1>
+    <p>No se pudo verificar la sesión.</p>
+  </div>
+
+</div>

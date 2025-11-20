@@ -1,0 +1,219 @@
+footer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+  border-top: 2px solid rgba(255, 0, 128, 0.2);
+  padding: 4rem 0 2rem;
+  color: #ffffff;
+}
+
+footer .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-section h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #ff0080, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-section p {
+  color: #b0b0b0;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.footer-section a {
+  display: block;
+  color: #b0b0b0;
+  text-decoration: none;
+  margin-bottom: 0.8rem;
+  transition: all 0.3s ease;
+  padding-left: 0;
+  position: relative;
+}
+
+.footer-section a::before {
+  content: '▸';
+  position: absolute;
+  left: -15px;
+  color: #ff0080;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #ff0080;
+  padding-left: 15px;
+}
+
+.footer-section a:hover::before {
+  opacity: 1;
+  left: 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-links a {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin: 0;
+}
+
+.social-links a::before {
+  display: none;
+}
+
+.social-links a:hover {
+  background: linear-gradient(135deg, #ff0080, #8a2be2);
+  border-color: #ff0080;
+  transform: translateY(-3px) rotate(5deg);
+  box-shadow: 0 10px 30px rgba(255, 0, 128, 0.4);
+  padding-left: 0;
+}
+
+.footer-section input[type="email"] {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 0, 128, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.footer-section input[type="email"]:focus {
+  border-color: #ff0080;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.footer-section button {
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, #ff0080, #8a2be2);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-section button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 0, 128, 0.4);
+}
+
+.footer-section input[type="email"] {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 0, 128, 0.3); /* Cambiado a rosa/morado */
+  border-radius: 8px;
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.footer-section input[type="email"]:focus {
+  border-color: #ff0080;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 💡 NUEVOS ESTILOS */
+.newsletter-form {
+    display: flex; 
+    gap: 0.5rem; 
+    margin-top: 1rem;
+}
+
+.submit-btn {
+    padding: 1rem 4.5rem;
+    /* Usando el gradiente neón de Prism Club */
+    background: linear-gradient(135deg, #ff0080, #8a2be2); 
+    border: none;
+    border-radius: 9px;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    min-width: 150px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 0, 128, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #333;
+    transform: none;
+    box-shadow: none;
+}
+
+.footer-section img {
+  width: 120px;
+  height: auto;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-section img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 0, 128, 0.3);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #808080;
+  font-size: 0.9rem;
+}
+
+.footer-bottom p {
+  margin: 0.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  footer {
+    padding: 3rem 0 1.5rem;
+  }
+}

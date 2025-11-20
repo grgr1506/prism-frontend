@@ -1,0 +1,23 @@
+<section id="events" class="events">
+    <div class="container">
+        <div class="events-grid">
+            <div class="event-card" *ngFor="let event of events">
+                
+                <div class="event-image">
+                    <img [src]="event.rutaImagen" alt="{{ event.titulo }}" />
+                </div>
+                
+                <div class="event-content">
+                    <div class="event-date">{{ event.fecha_evento }}</div> 
+                    <div class="event-title">{{ event.titulo }}</div>
+                    <div class="event-description">{{ event.descripcion }}</div>
+                    <div class="event-price">S/{{ event.precio_entrada }}</div>
+                    
+                    <button class="buy-ticket" (click)="buyTicket(event)">
+                        Reservar Entrada
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

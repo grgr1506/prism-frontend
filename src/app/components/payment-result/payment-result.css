@@ -1,0 +1,18 @@
+.result-container {
+  min-height: 60vh;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white; /* si usas fondo oscuro */
+  text-align: center;
+}
+.success-box, .cancel-box, .error-box {
+  background-color: #111;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #6b2ce0;
+  max-width: 500px;
+  width: 100%;
+}

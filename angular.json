@@ -21,11 +21,17 @@
             "assets": [
               {
                 "glob": "**/*",
+                "input": "src/Assets", 
+                "output": "/Assets"
+              },
+              {
+                "glob": "**/*",
                 "input": "public"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/notyf/notyf.min.css"
             ]
           },
           "configurations": {
@@ -76,6 +82,12 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
+
+              {
+                "glob": "**/*",
+                "input": "src/Assets", 
+                "output": "/Assets"
+              },
               {
                 "glob": "**/*",
                 "input": "public"
@@ -88,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "6026df5e-8b3c-4b34-998d-74726f47e36e"
   }
 }

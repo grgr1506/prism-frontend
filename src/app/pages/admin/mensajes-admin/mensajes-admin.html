@@ -1,0 +1,97 @@
+<div class="container-fluid prism-admin-content">
+
+    <h1 class="h3 mb-2 text-gray-800">Mensajes de Contacto</h1>
+    <p class="mb-4 text-gray-600">Revisa las consultas de clientes y administra su estado.</p>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="table-responsive">
+                        <table class="table users table-bordered" width="100%" cellspacing="0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th style="width: 50px;"></th>
+                                    <th>Asunto</th>
+                                    <th>Enviado por</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let mensaje of mensajes" 
+                                    [class.table-primary]="mensaje.id_mensaje === selectedMensaje?.id_mensaje"
+                                    [class.text-gray-600]="mensaje.leido"
+                                    (click)="selectMensaje(mensaje)" 
+                                    style="cursor: pointer; font-weight: 500;">
+                                    
+                                    <td class="text-center">
+                                        <i class="fas" 
+                                           [ngClass]="{'fa-envelope text-primary': !mensaje.leido, 'fa-envelope-open': mensaje.leido}">
+                                        </i>
+                                    </td>
+                                    <td>
+                                        <span class="text-primary mr-1">[{{ mensaje.tipo_consulta | uppercase }}]</span>
+                                        {{ mensaje.mensaje.substring(0, 40) }}...
+                                    </td>
+                                    <td>
+                                        {{ mensaje.nombre }} {{ mensaje.apellido }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="card bg-secondary text-white h-100" style="background-color: #333333 !important; border: 1px solid #ff6b35;">
+                        <div class="card-header" style="background-color: #222222 !important; border-color: #333333;">
+                            <h6 class="m-0 font-weight-bold" style="color: #ff6b35;">
+                                <span *ngIf="selectedMensaje">Detalles del Mensaje #{{ selectedMensaje.id_mensaje }}</span>
+                                <span *ngIf="!selectedMensaje">Seleccione un mensaje</span>
+                            </h6>
+                        </div>
+                        <div class="card-body" *ngIf="selectedMensaje">
+                            <h5 class="mb-3">
+                                **Asunto:** {{ selectedMensaje.tipo_consulta | uppercase }}
+                            </h5>
+                            
+                            <p class="mb-1">**De:** {{ selectedMensaje.nombre }} {{ selectedMensaje.apellido }}</p>
+                            <p class="mb-1">**Email:** <a [href]="'mailto:' + selectedMensaje.correo_electronico" class="text-info">{{ selectedMensaje.correo_electronico }}</a></p>
+                            <p class="mb-3">**Teléfono:** {{ selectedMensaje.numero_telefono || 'N/A' }}</p>
+
+                            <hr style="border-color: #555;">
+                            
+                            <p style="font-weight: bold; color: #ff6b35;">Mensaje:</p>
+                            <div class="p-3 mb-4 rounded" style="background-color: #1a1a1a; white-space: pre-wrap;">
+                                {{ selectedMensaje.mensaje }}
+                            </div>
+                            
+                            <p class="small text-right text-gray-600">
+                                Enviado: {{ selectedMensaje.enviado_en | date:'medium' }}
+                            </p>
+                            
+                            <div class="text-center mt-3">
+                                <button *ngIf="selectedMensaje.leido" 
+                                    class="btn-prism-action btn-warning" 
+                                    (click)="toggleLeido(selectedMensaje, false)">
+                                    <i class="fas fa-eye-slash mr-2"></i> Marcar como NO LEÍDO
+                                </button>
+                                <button *ngIf="!selectedMensaje.leido" 
+                                    class="btn-prism-action btn-success" 
+                                    (click)="toggleLeido(selectedMensaje, true)">
+                                    <i class="fas fa-check-circle mr-2"></i> Marcar como LEÍDO
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body" *ngIf="!selectedMensaje">
+                            <p class="text-center text-gray-600 my-5">
+                                Seleccione un mensaje de la izquierda para ver los detalles de la consulta.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

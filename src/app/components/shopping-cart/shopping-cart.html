@@ -1,0 +1,34 @@
+<div id="cart" class="cart">
+    <div class="cart-header">
+        <h3>Carrito de Compras</h3>
+        <button class="close-cart" (click)="toggleCart()">×</button>
+    </div>
+
+    <div id="cartItems">
+        <p *ngIf="cartItems.length === 0" style="text-align: center; opacity: 0.7; margin-top: 2rem;">
+            Tu carrito está vacío
+        </p>
+
+        <div class="cart-item" *ngFor="let item of cartItems">
+            <div>
+                <div style="font-weight: 600; margin-bottom: 0.5rem;">{{ item.name }}</div>
+                <div style="color: #ff6b35;">{{ item.price | currency:'PEN':'S/':'1.0-0' }} x {{ item.quantity }}</div>
+            </div>
+            <button (click)="removeFromCart(item.name)" 
+                    style="background: none; border: none; color: #ff6b35; cursor: pointer; font-size: 1.2rem;">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="cart-total">
+        <h3>Total: S/{{ totalAmount | number:'1.2-2' }}</h3>
+        <button class="checkout-btn" (click)="openPaymentModal()" [disabled]="cartItems.length === 0">
+            Proceder al Pago
+        </button>
+    </div>
+    <app-payment-modal
+    *ngIf="showPaymentModal"
+    (close)="closePaymentModal()">
+    </app-payment-modal>
+</div>

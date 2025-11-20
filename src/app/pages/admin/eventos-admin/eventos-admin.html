@@ -1,0 +1,171 @@
+<div class="container-fluid prism-admin-content">
+
+    <h1 class="h3 mb-2 text-gray-800">Gestión de Eventos PRISM Club</h1>
+    <p class="mb-4 text-gray-600">Visualiza, crea, edita y administra la visibilidad de todos los eventos.</p>
+
+    <div class="card shadow mb-4" *ngIf="isFormVisible">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                {{ isEditMode ? 'Editar Evento ID: ' + eventForm.get('id_evento')?.value : 'Nuevo Evento' }}
+            </h6>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="eventForm" (ngSubmit)="guardarEvento()">
+
+                <div class="form-row mb-3">
+                    <div class="col-md-6 form-group">
+                        <label for="titulo">Título del Evento</label>
+                        <input id="titulo" type="text" formControlName="titulo" class="form-control"
+                            placeholder="Ej: Electric Odyssey" required>
+                        <small *ngIf="eventForm.get('titulo')?.invalid && eventForm.get('titulo')?.touched"
+                            class="text-danger">El título es obligatorio.</small>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="fecha_evento">Fecha y Hora</label>
+                        <input id="fecha_evento" type="datetime-local" formControlName="fecha_evento"
+                            class="form-control" required>
+                        <small *ngIf="eventForm.get('fecha_evento')?.invalid && eventForm.get('fecha_evento')?.touched"
+                            class="text-danger">La fecha es obligatoria.</small>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" formControlName="descripcion" class="form-control" rows="3"
+                        placeholder="Descripción del evento..." required></textarea>
+                    <small *ngIf="eventForm.get('descripcion')?.invalid && eventForm.get('descripcion')?.touched"
+                        class="text-danger">La descripción es obligatoria.</small>
+                </div>
+
+                <div class="form-row mb-3">
+                    <div class="col-md-4 form-group">
+                        <label for="precio_entrada">Precio Entrada (S/)</label>
+                        <input id="precio_entrada" type="number" formControlName="precio_entrada" class="form-control"
+                            min="0" required>
+                        <small
+                            *ngIf="eventForm.get('precio_entrada')?.errors?.['required'] && eventForm.get('precio_entrada')?.touched"
+                            class="text-danger">El precio es obligatorio.</small>
+                        <small
+                            *ngIf="eventForm.get('precio_entrada')?.errors?.['min'] && eventForm.get('precio_entrada')?.touched"
+                            class="text-danger">El precio debe ser 0 o mayor.</small>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="capacidad_maxima">Capacidad Máxima</label>
+                        <input id="capacidad_maxima" type="number" formControlName="capacidad_maxima"
+                            class="form-control" min="1" required>
+                        <small
+                            *ngIf="eventForm.get('capacidad_maxima')?.errors?.['required'] && eventForm.get('capacidad_maxima')?.touched"
+                            class="text-danger">La capacidad es obligatoria.</small>
+                        <small
+                            *ngIf="eventForm.get('capacidad_maxima')?.errors?.['min'] && eventForm.get('capacidad_maxima')?.touched"
+                            class="text-danger">Debe ser al menos 1.</small>
+                    </div>
+                    <div class="col-md-4 form-group d-flex align-items-end">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="es_vip_exclusivo"
+                                formControlName="es_vip_exclusivo">
+                            <label class="custom-control-label" for="es_vip_exclusivo">Exclusivo VIP</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="rutaImagen">Imagen del Evento (*.jpg, *.png)</label>
+                    <input id="rutaImagen" type="file" (change)="onFileSelected($event)" class="form-control"
+                        accept="image/*" [required]="!isEditMode || !eventForm.get('rutaImagen')?.value"> <small
+                        class="text-muted mt-2 d-block">
+                        Archivo actual:
+                        <span *ngIf="selectedFile"> {{ selectedFile.name }} (Nuevo)</span>
+                        <span *ngIf="!selectedFile && isEditMode && eventForm.get('rutaImagen')?.value">
+                            {{ eventForm.get('rutaImagen')?.value }} (Existente)
+                        </span>
+                        <span *ngIf="!selectedFile && !isEditMode">Ninguno</span>
+                    </small>
+
+                    <small *ngIf="!selectedFile && !isEditMode" class="text-danger">La imagen es obligatoria al
+                        crear.</small>
+                </div>
+
+                <div class="form-actions d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary mr-2"
+                        (click)="isFormVisible = false">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">
+                        <i class="fas fa-save mr-2"></i> {{ isEditMode ? 'Guardar Cambios' : 'Crear Evento' }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <style>
+                    #TablaEventos th, #TablaEventos td {
+                        border-color: #333333 !important;
+                    }
+                    .thead-light th {
+                        background-color: #3a3a3a !important;
+                        color: #f0f0f0 !important;
+                    }
+                </style>
+                <table class="table users table-bordered" id="TablaEventos" width="100%" cellspacing="0">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="text-center">NOMBRE</th>
+                            <th class="text-center">FECHA EVENTO</th>
+                            <th class="text-center">DESCRIPCION</th>
+                            <th class="text-center">PRECIO ENTRADA</th>
+                            <th class="text-center">CAPACIDAD</th>
+                            <th class="text-center">ESTADO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let evento of eventos" [class.table-primary]="evento.id_evento === selectedEventId"
+                            (click)="selectEvent(evento.id_evento)">
+
+                            <td style="font-weight: 600;">{{ evento.titulo }}</td>
+                            <td>{{ evento.fecha_evento }}</td>
+                            <td style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                {{ evento.descripcion }}
+                            </td>
+                            <td><span class="text-primary">S/{{ evento.precio_entrada | number:'1.2-2' }}</span></td>
+                            <td class="text-center">{{ evento.capacidad_maxima }}</td>
+                            <td class="text-center">
+                                <span [ngClass]="{'text-success': evento.activo, 'text-danger': !evento.activo}">
+                                    <i class="fas"
+                                        [ngClass]="{'fa-circle': evento.activo, 'fa-slash': !evento.activo}"></i>
+                                    {{ evento.activo ? 'Activo' : 'Oculto' }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-actions-footer d-flex flex-wrap gap-3 mt-4">
+                <button type="button" class="btn-prism-action btn-success" (click)="abrirModalInsertarEvento()">
+                    <i class="fas fa-plus fa-sm mr-2"></i> Agregar Evento
+                </button>
+
+                <button type="button" class="btn-prism-action btn-primary" (click)="abrirModalEditarEvento()"
+                    [disabled]="!selectedEventId">
+                    <i class="fas fa-edit fa-sm mr-2"></i> Editar Evento
+                </button>
+
+                <button type="button" class="btn-prism-action"
+                    [ngClass]="{'btn-warning': isSelectedEventActive(), 'btn-info': !isSelectedEventActive()}"
+                    (click)="toggleActiveState()" [disabled]="!selectedEventId">
+                    <i class="fas fa-sm mr-2"
+                        [ngClass]="{'fa-eye-slash': isSelectedEventActive(), 'fa-eye': !isSelectedEventActive()}"></i>
+                    {{ isSelectedEventActive() ? 'Ocultar Evento' : 'Reactivar Evento' }}
+                </button>
+
+                <button type="button" class="btn-prism-action btn-danger" (click)="eliminarEventoPermanentemente()"
+                    [disabled]="!selectedEventId">
+                    <i class="fas fa-trash fa-sm mr-2"></i> Eliminar Permanentemente
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

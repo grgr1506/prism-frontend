@@ -1,0 +1,34 @@
+<header>
+    <nav>
+        <div class="logo">PRISM</div>
+        <ul class="nav-links">
+            <li><a routerLink="/" fragment="home">INICIO</a></li>
+            <li><a routerLink="/" fragment="about">NOSOTROS</a></li>
+            <li><a routerLink="/" fragment="events">EVENTOS</a></li>
+            <li><a routerLink="/" fragment="vip">VIP</a></li>
+            <li><a routerLink="/" fragment="contact">CONTACTO</a></li>
+            
+            <li>
+                <div class="cart-icon" (click)="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">{{ cartCount }}</span>
+                </div>
+            </li>
+            
+            <li *ngIf="!isUserLoggedIn">
+                <a routerLink="/login">LOGIN</a>
+            </li>
+
+            <li *ngIf="isUserLoggedIn">
+                <a (click)="performLogout()" style="cursor: pointer;">SALIR</a>
+            </li>
+            
+            <li *ngIf="userRole === 'admin'">
+                <a routerLink="/admin">ADMIN</a>
+            </li>
+        </ul>
+        <button class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+</header>
