@@ -33,29 +33,25 @@ export class FooterComponent {
             return;
         }
 
-        // 3. Petición al Backend
-        this.http.post(`${environment.serverURL}/api/newsletter`, { email: this.newsletterEmail })
-    // ...
+        const url = `${environment.serverURL}/api/newsletter`;
+
+        this.http.post(url, { email: this.newsletterEmail })
             .subscribe({
                 next: (response: any) => {
-                    // Éxito
                     Swal.fire({
                         title: '¡Suscripción Exitosa!',
-                        text: 'Revisa tu bandeja de entrada, te hemos enviado un regalo de bienvenida.',
+                        text: 'Revisa tu correo, te hemos enviado una sorpresa.',
                         icon: 'success',
-                        confirmButtonColor: '#ff0080',
-                        background: '#111', // Estilo oscuro acorde a tu tema
-                        color: '#fff'
+                        confirmButtonColor: '#ff0080'
                     });
-                    this.newsletterEmail = ''; // Limpiar el input
+                    this.newsletterEmail = '';
                 },
                 error: (err) => {
-                    console.error('Error newsletter:', err);
+                    console.error('Error suscripción:', err);
                     Swal.fire({
                         title: 'Error',
-                        text: 'No pudimos procesar tu suscripción en este momento.',
-                        icon: 'error',
-                        confirmButtonColor: '#333'
+                        text: 'No pudimos suscribirte en este momento.',
+                        icon: 'error'
                     });
                 }
             });
