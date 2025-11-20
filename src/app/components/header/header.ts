@@ -13,6 +13,8 @@ import { AuthService } from '../../services/auth';
   styleUrls: ['./header.css']
 })
 export class HeaderComponent implements OnInit {
+
+    isMenuOpen: boolean = false;
     cartCount: number = 0;
     isUserLoggedIn: boolean = false; 
     userRole: string | null = null; 
@@ -50,4 +52,11 @@ export class HeaderComponent implements OnInit {
     performLogout() {
         this.authService.logout();
     }
+    toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
 }
+}
+
+// En tu clase HeaderComponent:
+
+
