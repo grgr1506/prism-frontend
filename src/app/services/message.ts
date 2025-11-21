@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/enviroments'; // Asegúrate de importar el environment
 
 export interface FormularioData {
   nombre: string;
@@ -14,6 +15,7 @@ export class Message {
   constructor(private _http: HttpClient){}
   
   sendMessage(body: FormularioData){
-    return this._http.post('http://localhost:3000/Formulario', body);
+    // Corrección: Usamos la URL de Render y el endpoint correcto
+    return this._http.post(`${environment.serverURL}/api/data/contact`, body);
   }
 }
