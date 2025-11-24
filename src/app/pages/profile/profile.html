@@ -1,0 +1,80 @@
+<section class="profile-section fade-in">
+    <div class="container">
+        
+        <h1 class="page-title">Hola, <span class="highlight">{{ userName }}</span></h1>
+
+        <div class="tabs">
+            <button [class.active]="activeTab === 'tickets'" (click)="switchTab('tickets')">
+                <i class="fas fa-ticket-alt"></i> Mis Entradas
+            </button>
+            <button [class.active]="activeTab === 'settings'" (click)="switchTab('settings')">
+                <i class="fas fa-user-cog"></i> Ajustes de Cuenta
+            </button>
+        </div>
+
+        <div *ngIf="activeTab === 'tickets'" class="tab-content">
+            <div *ngIf="userEntradas.length === 0" class="empty-state">
+                <p>Aún no has comprado entradas.</p>
+                <a routerLink="/" fragment="events" class="cta-small">Ver Eventos</a>
+            </div>
+
+            <div class="tickets-grid">
+                <div *ngFor="let ticket of userEntradas" class="ticket-card">
+                    <div class="ticket-img">
+                        <img [src]="ticket.rutaImagen" alt="Evento">
+                    </div>
+                    <div class="ticket-info">
+                        <h3>{{ ticket.titulo }}</h3>
+                        <p class="date"><i class="far fa-calendar"></i> Compra: {{ ticket.fecha_compra | date }}</p>
+                        <div class="qr-box">
+                            <span class="qr-code">{{ ticket.codigo_qr }}</span>
+                            <small>Muestra este código en la entrada</small>
+                        </div>
+                        <span class="status" [class.valid]="ticket.estado === 'valida'">
+                            {{ ticket.estado | uppercase }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="activeTab === 'settings'" class="tab-content settings-layout">
+            
+            <div class="settings-card">
+                <h3>Datos Personales</h3>
+                <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" formControlName="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Apellido</label>
+                        <input type="text" formControlName="apellido">
+                    </div>
+                    <button type="submit" class="btn-save" [disabled]="profileForm.invalid">Guardar Cambios</button>
+                </form>
+            </div>
+
+            <div class="settings-card">
+                <h3>Seguridad</h3>
+                <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                    <div class="form-group">
+                        <label>Contraseña Actual</label>
+                        <input type="password" formControlName="currentPassword">
+                    </div>
+                    <div class="form-group">
+                        <label>Nueva Contraseña</label>
+                        <input type="password" formControlName="newPassword">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirmar Nueva Contraseña</label>
+                        <input type="password" formControlName="confirmPassword">
+                    </div>
+                    <button type="submit" class="btn-warn" [disabled]="passwordForm.invalid">Cambiar Contraseña</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</section>

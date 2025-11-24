@@ -18,6 +18,7 @@ import { MensajesAdminComponent } from './pages/admin/mensajes-admin/mensaje-adm
 
 import { FormsModule } from '@angular/forms'; 
 import { PaymentResultComponent } from './components/payment-result/payment-result';
+import { ProfileComponent } from './pages/profile/profile';
 
 export const routes: Routes = [
     // --- RUTAS PÚBLICAS/CLIENTE ---
@@ -26,6 +27,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent, title: 'Prism Club - Login' },
     { path: 'registro', component: RegistroComponent, title: 'Prism Club - Registro' },
     { path: "payment-result", component: PaymentResultComponent },
+    { path: 'perfil', component: ProfileComponent, title: 'Prism Club - Mi Perfil' },
     // --- RUTAS DE ADMINISTRACIÓN ---
     { 
         path: 'admin', 

@@ -25,16 +25,23 @@
             </li>
 
             <li *ngIf="isUserLoggedIn" style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
-                <span style="color: #00bfff; font-weight: bold; text-transform: uppercase; font-size: 0.9rem;">
-                    Hola, {{ userName }}
-                </span>
-                <a (click)="performLogout()" style="cursor: pointer; border: 1px solid #ff6b35; padding: 5px 15px; border-radius: 20px;">
+                
+                <a routerLink="/perfil" (click)="toggleMenu()" style="display: flex; flex-direction: column; line-height: 1; text-decoration: none; cursor: pointer;">
+                    <span style="font-size: 0.7rem; color: #888;">HOLA,</span>
+                    <span style="color: #00bfff; font-weight: bold; text-transform: uppercase;">{{ userName }}</span>
+                </a>
+
+                <a routerLink="/perfil" (click)="toggleMenu()" title="Ir a mi perfil" style="font-size: 1.2rem; color: #fff; cursor: pointer; transition: color 0.3s;">
+                    <i class="fas fa-cog"></i>
+                </a>
+
+                <a (click)="performLogout()" style="cursor: pointer; border: 1px solid #ff6b35; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; transition: all 0.3s;">
                     SALIR
                 </a>
             </li>
             
             <li *ngIf="userRole === 'admin'">
-                <a routerLink="/admin" (click)="toggleMenu()" style="color: #ff0080;">ADMIN</a>
+                <a routerLink="/admin" (click)="toggleMenu()" style="color: #ff0080; font-weight: bold;">ADMIN</a>
             </li>
         </ul>
     </nav>
