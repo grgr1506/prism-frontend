@@ -6,20 +6,38 @@
   justify-content: center;
   overflow: hidden;
   padding: 5rem 2rem;
-  background: 
-    linear-gradient(135deg, rgba(138, 43, 226, 0.3) 0%, rgba(0, 191, 255, 0.3) 100%),
-    radial-gradient(circle at 20% 50%, rgba(255, 0, 128, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
-    #0a0a0a;
-  animation: bgShift 20s ease infinite;
+  /* Fondo negro de respaldo por si el video tarda en cargar desde Cloudinary */
+  background: #000000;
 }
 
-@keyframes bgShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* =========================================
+   ESTILOS PARA EL VIDEO DE FONDO
+   ========================================= */
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que el video cubra toda la pantalla sin deformarse */
+  z-index: 0; /* Nivel más bajo */
 }
 
-/* Efecto de escaneo */
+/* Capa oscura superpuesta al video para que el texto resalte */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Oscurece el video al 50% */
+  z-index: 1; /* Encima del video */
+}
+
+/* =========================================
+   EFECTOS VISUALES (Scanlines)
+   ========================================= */
+/* Efecto de escaneo tipo "TV antigua/Cyberpunk" */
 .hero::before {
   content: '';
   position: absolute;
@@ -35,6 +53,7 @@
     rgba(255, 255, 255, 0.03) 3px
   );
   pointer-events: none;
+  z-index: 2; /* Encima del overlay */
   animation: scan 8s linear infinite;
 }
 
@@ -43,9 +62,12 @@
   100% { transform: translateY(100%); }
 }
 
+/* =========================================
+   CONTENIDO (Texto y Botones)
+   ========================================= */
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3; /* El nivel más alto para estar AL FRENTE de todo */
   text-align: center;
   max-width: 900px;
 }
@@ -63,14 +85,18 @@
   font-size: clamp(4rem, 12vw, 10rem);
   font-weight: 900;
   letter-spacing: 0.1em;
+  /* Gradiente del texto */
   background: linear-gradient(135deg, #ff0080, #00bfff, #8a2be2);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 3s ease infinite, glow 2s ease-in-out infinite;
+  
   margin: 0;
   line-height: 1;
+  
+  /* Animaciones del texto */
+  animation: gradientShift 3s ease infinite, glow 2s ease-in-out infinite;
 }
 
 @keyframes gradientShift {
@@ -96,6 +122,9 @@
   animation: fadeIn 1s ease-out 0.3s backwards;
 }
 
+/* =========================================
+   BOTONES
+   ========================================= */
 .hero-buttons {
   display: flex;
   gap: 1.5rem;
@@ -121,6 +150,7 @@
   display: inline-block;
 }
 
+/* Efecto Hover Circular */
 .cta-primary::before,
 .cta-secondary::before {
   content: '';

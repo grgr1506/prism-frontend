@@ -24,8 +24,13 @@
                 <a routerLink="/login" (click)="toggleMenu()">LOGIN</a>
             </li>
 
-            <li *ngIf="isUserLoggedIn">
-                <a (click)="performLogout()" style="cursor: pointer;">SALIR</a>
+            <li *ngIf="isUserLoggedIn" style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                <span style="color: #00bfff; font-weight: bold; text-transform: uppercase; font-size: 0.9rem;">
+                    Hola, {{ userName }}
+                </span>
+                <a (click)="performLogout()" style="cursor: pointer; border: 1px solid #ff6b35; padding: 5px 15px; border-radius: 20px;">
+                    SALIR
+                </a>
             </li>
             
             <li *ngIf="userRole === 'admin'">
