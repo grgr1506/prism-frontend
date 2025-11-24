@@ -4,12 +4,15 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../services/auth';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/enviroments';
+import { QRCodeModule } from 'angularx-qrcode';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  // 2. AGREGAR QRCodeModule A LOS IMPORTS
+  imports: [CommonModule, ReactiveFormsModule, QRCodeModule], 
   templateUrl: './profile.html',
   styleUrls: ['./profile.css']
 })

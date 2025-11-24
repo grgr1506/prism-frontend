@@ -166,3 +166,22 @@
     border: 1px solid #ff6b35;
     color: #ff6b35;
 }
+
+.qr-box {
+    background: #fff;
+    color: #000;
+    padding: 15px;      /* Un poco más de espacio interno */
+    margin: 15px 0;
+    text-align: center;
+    border-radius: 10px; /* Bordes un poco más redondeados */
+    display: flex;       /* Para centrar perfectamente */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Opcional: Para que la imagen del QR no se salga si es muy grande en móviles */
+qrcode canvas, qrcode img {
+    max-width: 100%;
+    height: auto;
+}

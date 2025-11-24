@@ -1,6 +1,6 @@
 <section class="profile-section fade-in">
     <div class="container">
-        
+
         <h1 class="page-title">Hola, <span class="highlight">{{ userName }}</span></h1>
 
         <div class="tabs">
@@ -27,8 +27,13 @@
                         <h3>{{ ticket.titulo }}</h3>
                         <p class="date"><i class="far fa-calendar"></i> Compra: {{ ticket.fecha_compra | date }}</p>
                         <div class="qr-box">
-                            <span class="qr-code">{{ ticket.codigo_qr }}</span>
-                            <small>Muestra este código en la entrada</small>
+                            <qrcode [qrdata]="ticket.codigo_qr" [width]="150" [errorCorrectionLevel]="'M'" [margin]="2"
+                                colorDark="#000000" colorLight="#ffffff">
+                            </qrcode>
+
+                            <small style="display: block; margin-top: 5px; font-size: 0.7rem; color: #555;">
+                                {{ ticket.codigo_qr }}
+                            </small>
                         </div>
                         <span class="status" [class.valid]="ticket.estado === 'valida'">
                             {{ ticket.estado | uppercase }}
@@ -39,7 +44,7 @@
         </div>
 
         <div *ngIf="activeTab === 'settings'" class="tab-content settings-layout">
-            
+
             <div class="settings-card">
                 <h3>Datos Personales</h3>
                 <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
