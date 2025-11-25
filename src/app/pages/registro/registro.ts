@@ -42,7 +42,9 @@ apiUrl = `${environment.serverURL}/api/auth/register`;
     });
   }
 
-  onSubmit() {
+  // En src/app/pages/registro/registro.ts
+
+onSubmit() {
     this.errorMessage = '';
     this.successMessage = '';
     
@@ -51,20 +53,22 @@ apiUrl = `${environment.serverURL}/api/auth/register`;
         return;
     }
 
-    // Llama al endpoint de registro
     this.http.post(this.apiUrl, this.registroForm.value).subscribe({
       next: (response: any) => {
         console.log('Registro exitoso:', response);
         this.successMessage = '¡Registro exitoso! Serás redirigido para iniciar sesión.';
         
-        // Redirigir al login después del éxito
+        // 1. BORRAR SESIÓN ANTIGUA (IMPORTANTE)
+        localStorage.removeItem('user_session'); 
+
         setTimeout(() => {
-            this.router.navigate(['/login']);
+            // 2. USAR NAVEGACIÓN COMPLETA PARA LIMPIAR LA MEMORIA
+            // En lugar de this.router.navigate(['/login']);
+            window.location.href = '/login';
         }, 2000);
       },
       error: (err) => {
         console.error('Error de registro:', err);
-        // Manejo específico del conflicto 409 (Correo ya existe)
         if (err.status === 409) {
             this.errorMessage = 'El correo electrónico ya está en uso.';
         } else {
@@ -72,5 +76,5 @@ apiUrl = `${environment.serverURL}/api/auth/register`;
         }
       }
     });
-  }
+}
 }
