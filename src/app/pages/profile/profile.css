@@ -19,6 +19,9 @@
 .highlight {
     color: #ff0080;
 }
+.apellido {
+  margin-left: 8px;
+}
 
 /* TABS */
 .tabs {

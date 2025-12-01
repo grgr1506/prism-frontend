@@ -18,28 +18,28 @@ import { environment } from '../../../environments/enviroments';
 export class LoginComponent implements OnInit {
 
   // Agrega este método dentro de la clase LoginComponent
-recuperarContrasena() {
-  Swal.fire({
-    title: 'Recuperar Contraseña',
-    input: 'email',
-    inputLabel: 'Ingresa tu correo registrado',
-    inputPlaceholder: 'tu@correo.com',
-    showCancelButton: true,
-    confirmButtonText: 'Enviar',
-    cancelButtonText: 'Cancelar',
-    background: '#1a1a1a',
-    color: '#fff',
-    confirmButtonColor: '#ff6b35'
-  }).then((result) => {
-    if (result.isConfirmed && result.value) {
-      this.http.post(`${environment.serverURL}/api/auth/recovery`, { correo_electronico: result.value })
-        .subscribe({
-          next: () => Swal.fire('Enviado', 'Revisa tu correo con la nueva contraseña', 'success'),
-          error: (err) => Swal.fire('Error', err.error.error || 'No se pudo enviar', 'error')
-        });
-    }
-  });
-}
+  recuperarContrasena() {
+    Swal.fire({
+      title: 'Recuperar Contraseña',
+      input: 'email',
+      inputLabel: 'Ingresa tu correo registrado',
+      inputPlaceholder: 'tu@correo.com',
+      showCancelButton: true,
+      confirmButtonText: 'Enviar',
+      cancelButtonText: 'Cancelar',
+      background: '#1a1a1a',
+      color: '#fff',
+      confirmButtonColor: '#ff6b35'
+    }).then((result) => {
+      if (result.isConfirmed && result.value) {
+        this.http.post(`${environment.serverURL}/api/auth/recovery`, { correo_electronico: result.value })
+          .subscribe({
+            next: () => Swal.fire('Enviado', 'Revisa tu correo con la nueva contraseña', 'success'),
+            error: (err) => Swal.fire('Error', err.error.error || 'No se pudo enviar', 'error')
+          });
+      }
+    });
+  }
   
   loginForm!: FormGroup; 
   errorMessage: string = '';
@@ -71,7 +71,6 @@ recuperarContrasena() {
       next: (response: any) => {
         // 1. Guardar la sesión y NOTIFICAR al HeaderComponent
         this.authService.login(response); 
-        
         // 2. Redirección basada en el rol
         const role = this.authService.getUserRole();
         if (role === 'admin') {

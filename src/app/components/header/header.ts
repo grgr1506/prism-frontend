@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     isUserLoggedIn: boolean = false; 
     userRole: string | null = null; 
     userName: string | null = null; // <--- Nueva variable para el nombre
-    
+    userApellido: string | null = null;
     // VARIABLE PARA EL MENÚ MÓVIL
     isMenuOpen: boolean = false;
 
@@ -31,7 +31,8 @@ export class HeaderComponent implements OnInit {
             this.isUserLoggedIn = state;
             if (state) {
                 this.userRole = this.authService.getUserRole();
-                this.userName = this.authService.getNombreUser(); // <--- Obtener el nombre del servicio
+                this.userName = this.authService.getNombreUser();
+                this.userApellido = this.authService.getApellidoUser();
             } else {
                 this.userRole = null;
                 this.userName = null;

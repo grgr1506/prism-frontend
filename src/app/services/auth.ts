@@ -58,6 +58,12 @@ export class AuthService {
         const session = JSON.parse(stored);
         return session?.user?.nombre || null
     }
+    getApellidoUser(): string | null {
+        const stored = localStorage.getItem('user_session');
+        if (!stored) return null;
+        const session = JSON.parse(stored);
+        return session?.user?.apellido || null
+    }
     // Cierra la sesión y notifica
     logout() {
         localStorage.removeItem('user_session');

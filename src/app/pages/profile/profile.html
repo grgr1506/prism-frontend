@@ -1,7 +1,7 @@
 <section class="profile-section fade-in">
     <div class="container">
 
-        <h1 class="page-title">Hola, <span class="highlight">{{ userName }}</span></h1>
+        <h1 class="page-title">Hola, <span class="highlight">{{ userName }}</span> <span class="highlight apellido">{{userApellido}}</span></h1>
 
         <div class="tabs">
             <button [class.active]="activeTab === 'tickets'" (click)="switchTab('tickets')">
@@ -75,7 +75,7 @@
                         <label>Confirmar Nueva Contraseña</label>
                         <input type="password" formControlName="confirmPassword">
                     </div>
-                    <button type="submit" class="btn-warn" [disabled]="passwordForm.invalid">Cambiar Contraseña</button>
+                    <button type="submit" class="btn-warn">Cambiar Contraseña</button>
                 </form>
             </div>
 

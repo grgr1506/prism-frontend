@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   passwordForm: FormGroup;
   userId: number | null = null;
   userName: string | null = '';
+  userApellido: string | null='';
 
   constructor(
     private auth: AuthService,
@@ -54,6 +55,7 @@ export class ProfileComponent implements OnInit {
             apellido: userInfo.apellido || ''
         });
         this.userName = userInfo.nombre;
+        this.userApellido = userInfo.apellido;
       }
     }
   }
@@ -84,14 +86,20 @@ export class ProfileComponent implements OnInit {
   }
 
   changePassword() {
-    if (this.passwordForm.invalid) return;
     const { currentPassword, newPassword, confirmPassword } = this.passwordForm.value;
-
-    if (newPassword !== confirmPassword) {
-      Swal.fire('Error', 'Las nuevas contraseñas no coinciden', 'error');
+    
+    if (newPassword.length < 6){
+      Swal.fire('Contraseña no Valida', 'La contraseña debe tener mas de 6 caracteres', 'error');
       return;
     }
-
+    if (newPassword !== confirmPassword) {
+      Swal.fire('Contraseñas Incorrectas', 'Las nuevas contraseñas no coinciden', 'error');
+      return;
+    }
+    if (this.passwordForm.invalid) {
+      Swal.fire('Error', 'Formulario Invalido', 'error');
+      return;
+    }
     this.http.put(`${environment.serverURL}/api/user/${this.userId}/password`, { currentPassword, newPassword })
       .subscribe({
         next: () => {
